@@ -1,0 +1,299 @@
+  
+mysql> CREATE DATABASE Academy;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> USE Academy;
+Database changed
+
+mysql> SHOW TABLES;
+Empty set (0.00 sec)
+
+mysql> CREATE TABLE Users(id TINYINT PRIMARY KEY AUTO_INCREMENT,User_name VARCHAR(50) NOT NULL);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> CREATE TABLE Courses(id TINYINT PRIMARY KEY AUTO_INCREMENT,Course_name VARCHAR(50) NOT NULL);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> CREATE TABLE Batch(id TINYINT PRIMARY KEY AUTO_INCREMENT,Batch_name VARCHAR(50) NOT NULL);
+Query OK, 0 rows affected (0.05 sec)
+mysql> DESC Batch;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | tinyint     | NO   | PRI | NULL    | auto_increment |
+| Batch_name | varchar(50) | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> DESC Users;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | tinyint     | NO   | PRI | NULL    | auto_increment |
+| User_name | varchar(50) | NO   |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
+
+mysql> DESC Courses;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | tinyint     | NO   | PRI | NULL    | auto_increment |
+| Course_name | varchar(50) | NO   |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO Users(User_name) VALUES("Ismail"),("vaisu");
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM Users;
++----+-----------+
+| id | User_name |
++----+-----------+
+|  1 | Ismail     |
+|  2 | vaisu     |
++----+-----------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO Batch(Batch_name) VALUES("Batch-1"),("Batch-2");
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO Courses(Course_name) VALUES("TEST"),("DEV"),("JS");
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM Users;
++----+-----------+
+| id | User_name |
++----+-----------+
+|  1 | Ismail     |
+|  2 | vaisu     |
++----+-----------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Batch;
++----+------------+
+| id | Batch_name |
++----+------------+
+|  1 | Batch-1    |
+|  2 | Batch-2    |
++----+------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Courses;
++----+-------------+
+| id | Course_name |
++----+-------------+
+|  1 | TEST        |
+|  2 | DEV         |
+|  3 | JS          |
++----+-------------+
+3 rows in set (0.00 sec)
+
+mysql> DESC Batch;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | tinyint     | NO   | PRI | NULL    | auto_increment |
+| Batch_name | varchar(50) | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> DESC Users;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | tinyint     | NO   | PRI | NULL    | auto_increment |
+| User_name | varchar(50) | NO   |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
+
+mysql> CREATE TABLE Batch_users(id INT PRIMARY KEY AUTO_INCREMENT, Batch_id TINYINT , User_id TINYINT , FOREIGN KEY (Batch_id) REFERENCES Batch(id), FOREIGN KEY (User_id) REFERENCES Users(id));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> DESC Batch_users;
++----------+---------+------+-----+---------+----------------+
+| Field    | Type    | Null | Key | Default | Extra          |
++----------+---------+------+-----+---------+----------------+
+| id       | int     | NO   | PRI | NULL    | auto_increment |
+| Batch_id | tinyint | YES  | MUL | NULL    |                |
+| User_id  | tinyint | YES  | MUL | NULL    |                |
++----------+---------+------+-----+---------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> INSERT INTO Batch_users(Batch_id,User_id) VALUES(1, 1),(2,2),(2,1);
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM Batch_users;
++----+----------+---------+
+| id | Batch_id | User_id |
++----+----------+---------+
+|  1 |        1 |       1 |
+|  2 |        2 |       2 |
+|  3 |        2 |       1 |
++----+----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE Batch_courses(id INT PRIMARY KEY AUTO_INCREMENT, batch_id TINYINT , course_id TINYINT , FOREIGN KEY (Batch_id) REFERENCES Batch(id), FOREIGN KEY (course_id) REFERENCES Courses(id));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> SELECT * FROM Batch_courses;
+Empty set (0.00 sec)
+
+mysql> DESC Batch_courses;
++-----------+---------+------+-----+---------+----------------+
+| Field     | Type    | Null | Key | Default | Extra          |
++-----------+---------+------+-----+---------+----------------+
+| id        | int     | NO   | PRI | NULL    | auto_increment |
+| batch_id  | tinyint | YES  | MUL | NULL    |                |
+| course_id | tinyint | YES  | MUL | NULL    |                |
++-----------+---------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO Batch_courses(batch_id,course_id) VALUES(1, 1),(2,2),(2,3),(1,3);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM Batch_courses;
++----+----------+-----------+
+| id | batch_id | course_id |
++----+----------+-----------+
+|  1 |        1 |         1 |
+|  2 |        2 |         2 |
+|  3 |        2 |         3 |
+|  4 |        1 |         3 |
++----+----------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT Users.id, Users.User_name , Batch.Batch_name FROM Users INNER JOIN Batch ON Users.id=Batch.id;
++----+-----------+------------+
+| id | User_name | Batch_name |
++----+-----------+------------+
+|  1 | Ismail     | Batch-1    |
+|  2 | vaisu     | Batch-2    |
++----+-----------+------------+
+2 rows in set (0.01 sec)
+
+mysql> SHOW TABLES;
++-------------------+
+| Tables_in_Academy |
++-------------------+
+| Batch             |
+| Batch_courses     |
+| Batch_users       |
+| Courses           |
+| Users             |
++-------------------+
+5 rows in set (0.00 sec)
+
+mysql> DESC Users;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | tinyint     | NO   | PRI | NULL    | auto_increment |
+| User_name | varchar(50) | NO   |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> DESC Batch;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | tinyint     | NO   | PRI | NULL    | auto_increment |
+| Batch_name | varchar(50) | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> DESC Courses;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | tinyint     | NO   | PRI | NULL    | auto_increment |
+| Course_name | varchar(50) | NO   |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> DESC Batch_users;
++----------+---------+------+-----+---------+----------------+
+| Field    | Type    | Null | Key | Default | Extra          |
++----------+---------+------+-----+---------+----------------+
+| id       | int     | NO   | PRI | NULL    | auto_increment |
+| Batch_id | tinyint | YES  | MUL | NULL    |                |
+| User_id  | tinyint | YES  | MUL | NULL    |                |
++----------+---------+------+-----+---------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> DESC Batch_courses;
++-----------+---------+------+-----+---------+----------------+
+| Field     | Type    | Null | Key | Default | Extra          |
++-----------+---------+------+-----+---------+----------------+
+| id        | int     | NO   | PRI | NULL    | auto_increment |
+| batch_id  | tinyint | YES  | MUL | NULL    |                |
+| course_id | tinyint | YES  | MUL | NULL    |                |
++-----------+---------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT Courses.id AS course_id , Courses.course_name AS course_name ,Batch.id AS Batch_id , Batch.Batch_name AS batch_name , Users.id AS user_id , Users.User_name AS user_name FROM Courses INNER JOIN Batch ON Courses.id=Batch.id INNER JOIN Users ON Users.id=Batch.id;
++-----------+-------------+----------+------------+---------+-----------+
+| course_id | course_name | Batch_id | batch_name | user_id | user_name |
++-----------+-------------+----------+------------+---------+-----------+
+|         1 | TEST        |        1 | Batch-1    |       1 | Ismail     |
+|         2 | DEV         |        2 | Batch-2    |       2 | vaisu     |
++-----------+-------------+----------+------------+---------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT Courses.id AS course_id , Courses.course_name AS course_name ,Batch.id AS Batch_id , Batch.Batch_name AS batch_name , Users.id AS user_id , Users.User_name AS user_name FROM Courses,Batch,Users WHERE Course_name="TEST";
++-----------+-------------+----------+------------+---------+-----------+
+| course_id | course_name | Batch_id | batch_name | user_id | user_name |
++-----------+-------------+----------+------------+---------+-----------+
+|         1 | TEST        |        2 | Batch-2    |       1 | Ismail     |
+|         1 | TEST        |        1 | Batch-1    |       1 | Ismail     |
+|         1 | TEST        |        2 | Batch-2    |       2 | vaisu     |
+|         1 | TEST        |        1 | Batch-1    |       2 | vaisu     |
++-----------+-------------+----------+------------+---------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT Users.User_name , Courses.Course_name FROM Users,Courses;
++-----------+-------------+
+| User_name | Course_name |
++-----------+-------------+
+| vaisu     | TEST        |
+| Ismail     | TEST        |
+| vaisu     | DEV         |
+| Ismail     | DEV         |
+| vaisu     | JS          |
+| Ismail     | JS          |
++-----------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT Users.User_name , Courses.Course_name FROM Users INNER JOIN Courses USING(id) ;
++-----------+-------------+
+| User_name | Course_name |
++-----------+-------------+
+| Ismail     | TEST        |
+| vaisu     | DEV         |
++-----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM Batch_users;
++----+----------+---------+
+| id | Batch_id | User_id |
++----+----------+---------+
+|  1 |        1 |       1 |
+|  2 |        2 |       2 |
+|  3 |        2 |       1 |
++----+----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT Batch_users.Batch_id  , Batch_users.User_id  FROM Batch_users ;
++----------+---------+
+| Batch_id | User_id |
++----------+---------+
+|        1 |       1 |
+|        2 |       2 |
+|        2 |       1 |
++----------+---------+
+3 rows in set (0.00 sec
