@@ -426,7 +426,7 @@ SELECT * FROM categories ;
 
 ## ER Model
 
-![ER SMYLE_DESIGNS](https://user-images.githubusercontent.com/93571043/159666425-71c08bd9-c281-4ae2-b573-a1ea53a5c415.png)
+![ER smyle_designs](https://user-images.githubusercontent.com/93571043/159668678-32e5a18a-40e2-417c-88e2-cb0f62cdf0b6.png)
 
 
 ## EER Model
