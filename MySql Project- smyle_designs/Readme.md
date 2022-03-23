@@ -394,6 +394,7 @@ DESC categories;
 |:------------|:--------|:-----|:----|:--------|:------|
 | design_id   | tinyint | YES  | MUL | NULL    |       |
 | category_id | tinyint | YES  | MUL | NULL    |       |
+
 ###### 2 rows in set (0.01 sec)
 ```sql
 INSERT INTO categories VALUES (1,1);
