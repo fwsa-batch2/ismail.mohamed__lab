@@ -423,3 +423,6 @@ SELECT * FROM categories ;
 |         3 |           2 |
 |         4 |           3 |
 ###### 4 rows in set (0.00 sec)
+
+## ER Model
+
