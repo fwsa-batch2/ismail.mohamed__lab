@@ -428,3 +428,9 @@ SELECT * FROM categories ;
 
 ![ER SMYLE_DESIGNS](https://user-images.githubusercontent.com/93571043/159666425-71c08bd9-c281-4ae2-b573-a1ea53a5c415.png)
 
+
+## EER Model
+
+![Screenshot from 2022-03-23 15-00-01](https://user-images.githubusercontent.com/93571043/159667622-2dfc57e9-5068-4379-b43a-de78600473b8.png)
+
+
