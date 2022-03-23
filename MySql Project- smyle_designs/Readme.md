@@ -246,11 +246,12 @@ SELECT * FROM personal_info;
 |       3 | Sahana   | Aisha    | Tester     | Kayalpattinam  | Tamil_nadu | Tuticorin |   628204 | 7687898769 |
 |       4 | Santhanu | sanboi   | Developer  | Rathinam_nagar | Tamil_nadu | Theni     |   625531 | 8870522547 |
 ###### 4 rows in set (0.00 sec)
+
 ```sql
 DESC category_name;
 ```
 | Field       | Type        | Null | Key | Default | Extra          |
-|:------------|:------------|:-----|:----|:--------:----------------|
+|:------------|:------------|:-----|:----|:--------|:---------------|
 | category_id | tinyint     | NO   | PRI | NULL    | auto_increment |
 | name        | varchar(25) | NO   | UNI | NULL    |                |
 ###### 2 rows in set (0.01 sec)
