@@ -1,3 +1,7 @@
+Create Database
+```sql
+CREATE DATABASE smyle_designs;
+```
 
 ```sql
 SHOW DATABASES;
@@ -13,6 +17,7 @@ SHOW DATABASES;
 | sys                |
 | views              |
 ###### 8 rows in set (0.00 sec)
+
 ```sql
 USE smyle_designs;
 ```
