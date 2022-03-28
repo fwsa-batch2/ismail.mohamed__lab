@@ -436,6 +436,7 @@ SELECT * FROM categories ;
 
 ## EER Model
 
-![Screenshot from 2022-03-23 15-00-01](https://user-images.githubusercontent.com/93571043/159667622-2dfc57e9-5068-4379-b43a-de78600473b8.png)
+![Screenshot from 2022-03-28 13-30-47](https://user-images.githubusercontent.com/93571043/160353272-1d982c9e-a736-400d-aa96-f7210f79bf74.png)
+
 
 
